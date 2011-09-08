@@ -96,13 +96,13 @@ then
     fi
 
     m[$c]=$(( ${track_length[$c]} / 60 ))
-    # Seconds are a somewhat nebulous problem. This returns an integer, so if you have a total number
-    # of samples that is not evenly divisible by the sample rate (usually 44100 Hz), then those
-    # extra samples aren't accounted for in the run time. [I think] mpd always accounts for them
-    # when determining track length, but other players like vlc do not unless they reach a certain
-    # threshold. The same that goes for vlc may also go for Amazon's track length listing.
+    # Seconds are a somewhat nebulous problem. This returns an integer, so if you have
+    # a total number of samples that is not evenly divisible by the sample rate (usually
+    # 44100 Hz), then those extra samples aren't accounted for in the run time. [I think]
+    # mpd always accounts for them when determining track length, but other media players,
+    # such as vlc, do not.
 
-    # Anyway, I opted to disregard the extra samples.
+    # The current behavior is to disregard the extra samples.
     s[$c]=$(( ${track_length[$c]} % 60 ))
 
     (( c++ ))
