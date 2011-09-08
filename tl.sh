@@ -36,7 +36,8 @@ tc="[/i]"
 version="0.1"
 ################################################################################
 
-print_help() {
+if [[ -z $1 || $1 = "--help" || $1 = "-h" ]]
+then
   echo -e "Usage:"
   echo -e "  tl [options] [directory]"
   echo -e "  tl \n"
@@ -47,11 +48,6 @@ print_help() {
   echo -e "  -h  --help\t\tPrint this help and exit"
   echo -e "  -t  --total-length\tPrint total length of tracks in directory and exit (requires display_length set to true)"
   echo -e "  -v  --version\t\tPrint version and exit"
-}
-
-if [[ -z $1 || $1 = "--help" || $1 = "-h" ]]
-then
-  print_help
   exit 0
 fi
 
