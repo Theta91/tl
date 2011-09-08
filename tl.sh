@@ -49,13 +49,13 @@ print_help() {
   echo -e "  -v  --version\t\tPrint version and exit"
 }
 
-if [[ -z "$1" || "$1" = "--help" || "$1" = "-h" ]]
+if [[ -z $1 || $1 = "--help" || $1 = "-h" ]]
 then
   print_help
   exit 0
 fi
 
-if [[ "$1" = "--version" || "$1" = "-v" ]]
+if [[ $1 = "--version" || $1 = "-v" ]]
 then
   echo -e "tl ${version}"
   exit 0
