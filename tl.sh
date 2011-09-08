@@ -85,8 +85,8 @@ then
   total_length=0
   while [[ $c -lt $items ]]
   do
-    samples[$c]=$(metaflac --list "${files[$c]}" | awk -F ":" '/total[ _-]samples/ { print $2 }' | sed s/[^0-9]//g)
-    rate[$c]=$(metaflac --list "${files[$c]}" | awk -F ":" '/sample[ _-]rate/ { print $2 }' | sed s/[^0-9]//g)
+    samples[$c]=$(metaflac --show-total-samples "${files[$c]}")
+    rate[$c]=$(metaflac --show-sample-rate "${files[$c]}")
 
     track_length[$c]=$(( ${samples[$c]} / ${rate[$c]} ))
 
@@ -126,7 +126,7 @@ fi
 # Stores track number and title
 while [[ $c -lt $items ]]
 do
-  track_number[$c]=$(metaflac --list "${files[$c]}" | awk -F "=" 'tolower($0) ~ /tracknumber/ { print $2 }' | sed s/[^0-9]//g)
+  track_number[$c]=$(metaflac --list "${files[$c]}" | awk -F "=" 'tolower($0) ~ /tracknumber/ { print $2 }' | sed s/[^0-9]//)
   track_title[$c]=$(metaflac --list "${files[$c]}" | awk -F "=" 'tolower($0) ~ /title/ { print $2 }')
   (( c++ ))
 done; c=0
