@@ -1,27 +1,34 @@
 #!/bin/bash --
 
 ################################################################################
-#    Copyright (C) 2011 Someone
+#The MIT License (MIT)
 #
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
+#Copyright (c) 2011-2014
 #
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
+#Permission is hereby granted, free of charge, to any person obtaining a copy
+#of this software and associated documentation files (the "Software"), to deal
+#in the Software without restriction, including without limitation the rights
+#to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+#copies of the Software, and to permit persons to whom the Software is
+#furnished to do so, subject to the following conditions:
 #
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#The above copyright notice and this permission notice shall be included in all
+#copies or substantial portions of the Software.
+#
+#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+#IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+#AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+#SOFTWARE.
 ################################################################################
 
 ################################################################################
 #    User-defined Variables
 # Separator between track number and track title. There is no other existing
 # separation so don't forget to add whitespace.
-sep=" - "
+sep=" "
 # BB Code to apply to track number. Can be empty.
 no="[b]"
 nc="[/b]"
@@ -32,31 +39,14 @@ display_length=0
 to="[i]"
 tc="[/i]"
 ################################################################################
-#    Program-defined Variables (don't touch)
-version="0.1"
-################################################################################
-
 if [[ -z $1 || $1 = "--help" || $1 = "-h" ]]
 then
   echo -e "Usage:"
-  echo -e "  tl [options] [directory]"
-  echo -e "  tl \n"
+  echo -e "  tl [directory]\n"
 
   echo -e "tl generates a tracklist for a given directory of properly tagged FLAC files\n"
-
-  echo -e "Options:"
-  echo -e "  -h  --help\t\tPrint this help and exit"
-  echo -e "  -t  --total-length\tPrint total length of tracks in directory and exit (requires display_length set to true)"
-  echo -e "  -v  --version\t\tPrint version and exit"
   exit 0
 fi
-
-if [[ $1 = "--version" || $1 = "-v" ]]
-then
-  echo -e "tl ${version}"
-  exit 0
-fi
-
 ################################################################################
 # Check to see whether the supplied directory is valid
 if [[ ! -d "${!#}" || -h "${!#}" ]]
